@@ -11,6 +11,9 @@
 		5984B7882AFCB57A00957370 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5984B7872AFCB57A00957370 /* ContentView.swift */; };
 		5984B78A2AFCB57D00957370 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5984B7892AFCB57D00957370 /* Assets.xcassets */; };
 		5984B78D2AFCB57D00957370 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5984B78C2AFCB57D00957370 /* Preview Assets.xcassets */; };
+		5984B7962AFCB77100957370 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5984B7952AFCB77100957370 /* SignUpView.swift */; };
+		59AB59E42AFCD26C006D1EFA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AB59E32AFCD26C006D1EFA /* HomeView.swift */; };
+		59E0D2932AFCF58F0039D12B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E0D2922AFCF58F0039D12B /* EditProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		5984B7872AFCB57A00957370 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5984B7892AFCB57D00957370 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5984B78C2AFCB57D00957370 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5984B7952AFCB77100957370 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		59AB59E32AFCD26C006D1EFA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		59E0D2922AFCF58F0039D12B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,9 @@
 				5984B7872AFCB57A00957370 /* ContentView.swift */,
 				5984B7892AFCB57D00957370 /* Assets.xcassets */,
 				5984B78B2AFCB57D00957370 /* Preview Content */,
+				5984B7952AFCB77100957370 /* SignUpView.swift */,
+				59AB59E32AFCD26C006D1EFA /* HomeView.swift */,
+				59E0D2922AFCF58F0039D12B /* EditProfileView.swift */,
 			);
 			path = SeniorHealth;
 			sourceTree = "<group>";
@@ -137,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59E0D2932AFCF58F0039D12B /* EditProfileView.swift in Sources */,
 				5984B7882AFCB57A00957370 /* ContentView.swift in Sources */,
+				59AB59E42AFCD26C006D1EFA /* HomeView.swift in Sources */,
+				5984B7962AFCB77100957370 /* SignUpView.swift in Sources */,
 				5984B7862AFCB57A00957370 /* SeniorHealthApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +284,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SeniorHealth/Preview Content\"";
+				DEVELOPMENT_TEAM = 3WDHBTFL29;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -300,6 +313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SeniorHealth/Preview Content\"";
+				DEVELOPMENT_TEAM = 3WDHBTFL29;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
