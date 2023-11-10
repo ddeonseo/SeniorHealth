@@ -5,17 +5,24 @@ struct SignUp: Decodable {
 }
 
 struct SignUpView: View {
+    @Binding var userProfile: UserProfile
+    
     @State private var username: String = ""
     @State private var phoneNumber: String = "010"
     
+    @State private var selectedGender = "남성"
     @State private var isUsernameValid: Bool = false
     @State private var isPhoneNumberValid: Bool = false
+    
+    @State private var isComplete = false
     
     @State private var showAlert = false
     @State private var userId: Int = -1
     
-    var nicknameGenerated: () -> Void
+    var nicknameGenerated: (String, String) -> Void
     let usernameRegex = "^[^\\s]+$"
+    
+    let genderOptions = ["남성", "여성"]
     
     var body: some View {
         NavigationStack {
@@ -44,12 +51,23 @@ struct SignUpView: View {
                         .strokeBorder()
                 }
                 
+                Picker("성별", selection: $selectedGender) {
+                    ForEach(genderOptions, id: \.self) {
+                        Text($0)
+                            .font(.system(size: 20))
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 15.0).strokeBorder())
+                
                 HStack {
-                    TextField("전화번호를 입력해주세요...", text: $phoneNumber, onCommit: {
-                        // Format the phone number with dashes if it's not already formatted
-                        phoneNumber = formatPhoneNumber(phoneNumber)
-                    })
-                    .keyboardType(.numberPad) // Ensure numeric keyboard
+                    TextField("전화번호를 입력해주세요...", text: $phoneNumber)
+                        .keyboardType(.numberPad)
+                        .onChange(of: phoneNumber) { newValue in
+                            isPhoneNumberValid = isValidPhoneNumber(newValue)
+                                            }
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.secondary)
                         .onTapGesture {
@@ -64,14 +82,15 @@ struct SignUpView: View {
                 
                 VStack(alignment: .trailing) {
                     if isUsernameValid && isPhoneNumberValid {
-                        Text("사용가능한 닉네임과 전화번호입니다.")
+                        Text("사용가능한 이름과 전화번호입니다.")
                             .foregroundColor(.green)
                     } else {
-                        Text("사용 불가능한 닉네임 또는 전화번호입니다.")
+                        Text("사용 불가능한 이름 혹은 전화번호입니다.")
                             .foregroundColor(.red)
                     }
                 }
-                .font(.system(.subheadline))
+//                .font(.system(.subheadline))
+                .font(.system(size:16))
                 .padding()
                 
                 Spacer()
@@ -85,7 +104,8 @@ struct SignUpView: View {
                     let phone = phoneNumber
                     let deviceId = ""
                     signUp(deviceId, nickname, phone)
-                    nicknameGenerated()
+                    nicknameGenerated(nickname, phone)
+                    isComplete = true
                 } else {
                     showAlert = true
                 }
@@ -94,39 +114,32 @@ struct SignUpView: View {
             }
             .alert(isPresented: $showAlert) {
                 Alert(
-                    title: Text("닉네임 또는 전화번호가 올바르지 않습니다!"),
+                    title: Text("입력이 올바르지 않습니다!"),
                     dismissButton: .default(Text("확인")))
             }
             .padding()
-            
-            Spacer()
+            .background(
+                NavigationLink(destination: HomeView(userProfile: $userProfile), isActive: $isComplete) {
+                    EmptyView()
+                }
+            )
         }
+        
     }
     
     private func signUp(_ deviceId: String, _ username: String, _ phoneNumber: String) {
-        // Implement the sign-up functionality, e.g., sending the data to your server.
-        // You can use Alamofire or another networking library to make the API request.
+        // Need to implement
     }
     
     private func isValidPhoneNumber(_ phoneNumber: String) -> Bool {
-        // Implement your phone number validation logic here.
-        // For example, you can check the length or format of the phone number.
-        // Return true if it's valid, false otherwise.
-        return phoneNumber.count == 11 // Modify this based on your validation criteria.
-    }
-    
-    private func formatPhoneNumber(_ phoneNumber: String) -> String {
-        var formattedPhoneNumber = phoneNumber
-        // Remove any existing dashes or spaces
-        formattedPhoneNumber = formattedPhoneNumber.replacingOccurrences(of: "-", with: "")
-        formattedPhoneNumber = formattedPhoneNumber.replacingOccurrences(of: " ", with: "")
-        
-        return formattedPhoneNumber
+        let phoneNumberDigits = phoneNumber.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "-", with: "")
+//        return phoneNumberDigits.count == 11
+        return phoneNumberDigits.hasPrefix("010") && phoneNumberDigits.count == 11
     }
 }
 
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView(nicknameGenerated: {})
-    }
-}
+//struct SignUpView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SignUpView()
+//    }
+//}
